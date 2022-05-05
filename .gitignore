@@ -1,0 +1,6 @@
+.vendor
+Dockerfile
+docker-compose.yml
+makalesistem.conf
+.vscode
+.idea
