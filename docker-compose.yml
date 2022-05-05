@@ -1,0 +1,21 @@
+version: '2'
+services:
+  apachephp:
+    image: 'apache_php'
+    ports:
+      - '8080:80'
+    volumes:
+      - './:/var/www/html'
+  maria_db:
+    image: 'mariadb'
+    ports:
+      - '3306:3306'
+    volumes:
+      - './mariadb :/var/lib/mysql'
+    environment:
+      MYSQL_DB_CONNECTION: makalesistemi:8889
+      MYSQL_DB_NAME: makalesistemi
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_HOST: localhost
+      SITE_URL: http://localhost:8080

@@ -1,0 +1,20 @@
+{
+    "name": "PHP Basic MVC",
+    "description": "Basic MVC Project",
+    "type": "project",
+    "license": "MIT Licence",
+    "authors": [
+        {
+            "name": "Abdullah ÖZCAN",
+            "email": "abdullah.ozcan@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "core/"
+        }
+    }
+}
