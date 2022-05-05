@@ -1,6 +1,6 @@
 {
-    "name": "user/blog-sistem",
-    "description": "makale sistemi",
+    "name": "PHP Basic MVC",
+    "description": "Basic MVC Project",
     "type": "project",
     "license": "MIT Licence",
     "authors": [

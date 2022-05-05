@@ -1,7 +1,7 @@
 <?php
 /*
- * Abdullah ÖZCAN
- * Makale Sistemi
+ *  Creator : Abdullah ÖZCAN
+ *  Name : BasicMVC
  */
 
 date_default_timezone_set("Europe/Istanbul");
