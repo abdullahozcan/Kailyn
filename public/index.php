@@ -1,10 +1,7 @@
 <?php
 /*
  *  Creator : Abdullah ÖZCAN
- *  Name : BasicMVC
+ *  Name : Kailyn Framework
  */
 
-date_default_timezone_set("Europe/Istanbul");
-require_once(__DIR__ . '/../vendor/autoload.php');
-require_once(__DIR__ . '/../core/config.php');
-require_once(dirname(__DIR__).'/route/api.php');
+include(__DIR__.'/../core/Kernel.php');

@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+use Core\Template;
 
 /**
  * View class
@@ -7,6 +8,11 @@ namespace Core;
  * @namespace Core
  */
 class View{
+
+    function __construct()
+    {
+        $template = new Template();
+    }
 
     /**
      * Render a view file
@@ -16,8 +22,8 @@ class View{
      *
      * @return void
      */
-    public function render($view, $data = []){
+    public static function render($view, $data = []){
         extract($data);
-        require "app/views/{$view}.php";
+        require "app/view/{$view}.php";
     }
 }

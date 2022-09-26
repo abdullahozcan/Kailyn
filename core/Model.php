@@ -1,31 +1,32 @@
 <?php
 namespace Core;
 use Core\Database;
+use Core\Abstracts\QueryBuilder;
 
-class Model extends Database
+abstract class Model extends Database
 {
-    private $table = null;
-    private $sql_query = null;
-    private $select = null;
-    private $where = null;
-    private $orderBy = null;
-    private $select_variable = null;
-    private $where_variable = null;
-    private $order_by = null;
-    private $limit = '';
+    protected $table = null;
+    protected $sql_query = null;
+    protected $select = null;
+    protected $where = null;
+    protected $orderBy = null;
+    protected $select_variable = null;
+    protected $where_variable = null;
+    protected $order_by = null; 
+    protected $limit = '';
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    private function setQueryElement(){
+    public function setQueryElement(){
         $this->select_variable = ($this->select)?$this->select:"*";
         $this->where_variable = ($this->where)?$this->where:'';
         $this->order_by = ($this->orderBy)?$this->orderBy:'';
     }
 
-    private function setSelectSqlQuery(){
+    public function setSelectSqlQuery(){
         $this->sql_query = 'Select '.$this->select_variable.' FROM '.$this->table.$this->where_variable.$this->order_by.$this->limit;
     }
 
@@ -67,7 +68,7 @@ class Model extends Database
         $this->setQueryElement();
         $this->setSelectSqlQuery();
         $return_data = $this->db->query($this->sql_query);
-        return $return_data->fetchAll(\PDO::FETCH_OBJ);
+        return $return_data->fetchAll();
     }
 
     public function first(){

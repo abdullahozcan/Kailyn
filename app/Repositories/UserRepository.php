@@ -6,6 +6,7 @@ class UserRepository extends Repository
 {
     private $userModel;
     function __construct(){
+        
         $this->userModel = new \App\Models\User();
     }
 

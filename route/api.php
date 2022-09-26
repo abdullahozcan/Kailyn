@@ -21,6 +21,8 @@ $route->get('/abdullah',function(){
     phpinfo();
 });
 
+$route->get('/home',[(new \App\Controllers\HomeController()),'home']);
+
 // User
 $route->get('/user/list',[(new \App\Controllers\UserController()),'list']);
 $route->post('/user/create',[(new \App\Controllers\UserController()),'store']);
@@ -34,5 +36,3 @@ $route->post('article/:id/edit',[(new \App\Controllers\HomeController()),'edit']
 $route->post('/article/update',[(new \App\Controllers\HomeController()),'store']);
 $route->post('/article/delete',[(new \App\Controllers\HomeController()),'store']);
 $route->post('/article/list',[(new \App\Controllers\HomeController()),'list']);
-
-$route->run();

@@ -4,3 +4,4 @@ docker-compose.yml
 makalesistem.conf
 .vscode
 .idea
+index.php
