@@ -32,19 +32,19 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '90449600c1c3164dea3c2fbd644939f8075e3568',
+    'reference' => '294f5f37e798540227c8c7b3e04349e0614570c1',
     'name' => 'kailyin/kailyin',
   ),
   'versions' => 
   array (
     'graham-campbell/result-type' => 
     array (
-      'pretty_version' => 'v1.0.4',
-      'version' => '1.0.4.0',
+      'pretty_version' => 'v1.1.0',
+      'version' => '1.1.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0690bde05318336c7221785f2a932467f98b64ca',
+      'reference' => 'a878d45c1914464426dc94da61c9e1d36ae262a8',
     ),
     'kailyin/kailyin' => 
     array (
@@ -53,16 +53,16 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '90449600c1c3164dea3c2fbd644939f8075e3568',
+      'reference' => '294f5f37e798540227c8c7b3e04349e0614570c1',
     ),
     'phpoption/phpoption' => 
     array (
-      'pretty_version' => '1.8.1',
-      'version' => '1.8.1.0',
+      'pretty_version' => '1.9.0',
+      'version' => '1.9.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'eab7a0df01fe2344d172bff4cd6dbd3f8b84ad15',
+      'reference' => 'dc5ff11e274a90cc1c743f66c9ad700ce50db9ab',
     ),
     'symfony/polyfill-ctype' => 
     array (
