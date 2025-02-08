@@ -10,31 +10,6 @@ $argument = $argv[2] ?? null;
 $functions = new Functions($argv);
 echo $functions->run();die;
 
-switch ($command) {
-    case 'fly':
-        startServer();
-        break;
-    case 'make:model':
-        if ($argument) {
-            createModel($argument);
-        } else {
-            echo "Lütfen bir model ismi belirtin.\n";
-        }
-        break;
-    default:
-        echo "Komut bulunamadı. Kullanılabilir komutlar: fly, make:model\n";
-        break;
-}
-
-function startServer()
-{
-    $host = '127.0.0.1';
-    $port = '8000';
-    $docRoot = __DIR__ . '/public';
-
-    echo "PHP yerleşik sunucusu başlatılıyor: http://$host:$port\n";
-    exec("php -S $host:$port -t $docRoot");
-}
 
 function createModel($modelName)
 {
