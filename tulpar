@@ -1,0 +1,65 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+use Core\Tulpar\Functions;
+
+$command = $argv[1] ?? null;
+$argument = $argv[2] ?? null;
+
+$functions = new Functions($argv);
+echo $functions->run();die;
+
+switch ($command) {
+    case 'fly':
+        startServer();
+        break;
+    case 'make:model':
+        if ($argument) {
+            createModel($argument);
+        } else {
+            echo "Lütfen bir model ismi belirtin.\n";
+        }
+        break;
+    default:
+        echo "Komut bulunamadı. Kullanılabilir komutlar: fly, make:model\n";
+        break;
+}
+
+function startServer()
+{
+    $host = '127.0.0.1';
+    $port = '8000';
+    $docRoot = __DIR__ . '/public';
+
+    echo "PHP yerleşik sunucusu başlatılıyor: http://$host:$port\n";
+    exec("php -S $host:$port -t $docRoot");
+}
+
+function createModel($modelName)
+{
+    $modelDir = __DIR__ . '/app/Models';
+    $modelFile = $modelDir . '/' . $modelName . '.php';
+
+    if (!is_dir($modelDir)) {
+        mkdir($modelDir, 0777, true);
+    }
+
+    $modelTemplate = <<<EOT
+<?php
+namespace App\Models;
+
+use Core\Model;
+
+class $modelName extends Model
+{
+    // Model kodları buraya
+}
+EOT;
+
+    if (file_put_contents($modelFile, $modelTemplate) !== false) {
+        echo "$modelName modeli oluşturuldu: $modelFile\n";
+    } else {
+        echo "$modelName modeli oluşturulamadı.\n";
+    }
+}

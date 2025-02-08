@@ -1,58 +1,106 @@
 <?php
 namespace Core;
 
-class Response{
+class Response
+{
+    protected $headers = [];
+    protected $statusCode = 200;
+    protected $content;
 
-    public function json($data){
-        header('Content-Type: application/json');
-        echo json_encode($data);
+    public function json($data, $statusCode = 200)
+    {
+        $this->setStatusCode($statusCode);
+        $this->setHeader('Content-Type', 'application/json');
+        $this->setContent(json_encode($data));
+        $this->send();
     }
 
-    public function redirect($url){
-        header('Location: '.$url);
+    public function redirect($url, $statusCode = 302)
+    {
+        $this->setStatusCode($statusCode);
+        $this->setHeader('Location', $url);
+        $this->send();
     }
 
-    public function view($view, $data = []){
-        require_once '../app/Views/'.$view.'.php';
+    public function view($view, $data = [], $statusCode = 200)
+    {
+        $this->setStatusCode($statusCode);
+        extract($data);
+        $viewPath = realpath('../app/Views/' . $view . '.php');
+        if ($viewPath && strpos($viewPath, realpath('../app/Views/')) === 0) {
+            ob_start();
+            require_once $viewPath;
+            $this->setContent(ob_get_clean());
+            $this->send();
+        } else {
+            $this->error404();
+        }
     }
 
-    public function error($message){
-        echo $message;
+    public function setHeader($key, $value)
+    {
+        $this->headers[$key] = $value;
     }
 
-    public function error404(){
-        header('HTTP/1.0 404 Not Found');
-        echo '404 Not Found';
+    public function setStatusCode($statusCode)
+    {
+        $this->statusCode = $statusCode;
     }
 
-    public function error500(){
-        header('HTTP/1.0 500 Internal Server Error');
-        echo '500 Internal Server Error';
+    public function setContent($content)
+    {
+        $this->content = $content;
     }
 
-    public function error503(){
-        header('HTTP/1.0 503 Service Unavailable');
-        echo '503 Service Unavailable';
+    public function send()
+    {
+        http_response_code($this->statusCode);
+        foreach ($this->headers as $key => $value) {
+            header("$key: $value");
+        }
+        echo $this->content;
     }
 
-    public function error401(){
-        header('HTTP/1.0 401 Unauthorized');
-        echo '401 Unauthorized';
+    public function error($message, $statusCode = 500)
+    {
+        $this->setStatusCode($statusCode);
+        $this->setContent($message);
+        $this->send();
     }
 
-    public function error403(){
-        header('HTTP/1.0 403 Forbidden');
-        echo '403 Forbidden';
+    public function error404($message = '404 Not Found')
+    {
+        $this->error($message, 404);
     }
 
-    public function error400(){
-        header('HTTP/1.0 400 Bad Request');
-        echo '400 Bad Request';
+    public function error500($message = '500 Internal Server Error')
+    {
+        $this->error($message, 500);
     }
 
-    public function error405(){
-        header('HTTP/1.0 405 Method Not Allowed');
-        echo '405 Method Not Allowed';
+    public function error503($message = '503 Service Unavailable')
+    {
+        $this->error($message, 503);
+    }
+
+    public function error401($message = '401 Unauthorized')
+    {
+        $this->error($message, 401);
+    }
+
+    public function error403($message = '403 Forbidden')
+    {
+        $this->error($message, 403);
+    }
+
+    public function error400($message = '400 Bad Request')
+    {
+        $this->error($message, 400);
+    }
+
+    public function error405($message = '405 Method Not Allowed')
+    {
+        $this->error($message, 405);
     }
 
     public function error422(){

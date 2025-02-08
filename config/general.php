@@ -8,3 +8,4 @@ define('APP_DEBUG', true);
 define('APP_URL', 'http://localhost:8000');
 define('APP_TIMEZONE', 'Europe/Istanbul');
 define('APP_LOCALE', 'en');
+
