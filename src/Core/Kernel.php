@@ -13,7 +13,7 @@ foreach (glob(__DIR__ . '/../config/*.php') as $configFile) {
     require_once($configFile);
 }
 
-require_once(dirname(__DIR__).'/route/api.php');
+require_once(dirname(__DIR__).'/../routes/api.php');
 
 /*
  * @method Dotenv\Dotenv::createImmutable

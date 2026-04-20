@@ -1,5 +1,5 @@
 <?php
-namespace App\Controllers;
+namespace App\Http\Controllers;
 use Core\Controller;
 use Core\Request;
 use Core\Response;

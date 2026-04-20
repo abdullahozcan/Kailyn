@@ -4,4 +4,4 @@
  *  Name : Kailyn Framework
  */
 
-include(__DIR__.'/../core/Kernel.php');
+require_once __DIR__.'/../src/Core/Kernel.php';
